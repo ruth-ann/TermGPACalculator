@@ -13,7 +13,14 @@ public class TermData {
     Double termUnitCount = 0.0;
     Double termGradePoints = 0.0;
 
+    public Integer getClasscount() {
+        return classcount;
+    }
+
+    Integer classcount = 1;
+
     public TermData(String pTermName) {
+
         termName = pTermName;
     }
 
@@ -25,6 +32,8 @@ public class TermData {
         termUnitCount += units;
         termGradePoints += gradePoints;
         termGPA = termGradePoints/termUnitCount;
+        classcount++;
+
     }
 
     public Double getTermGPA() {

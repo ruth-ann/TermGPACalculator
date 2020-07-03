@@ -21,20 +21,19 @@ public class MainActivity extends AppCompatActivity {
     Button btCalculateGPA;
     Button btReset;
     Button btNewTerm;
+    Button btViewTranscript;
+
 
     Map<String, Double> gpaMap;
     Double currGpa = 0.0;
     Double totalUnitCount = 0.0;
     Double totalGradePoints = 0.0;
 
-    Integer count = 0;
+    Integer count = 1;
 
     TranscriptData transcriptData;
 
     DecimalFormat df = new DecimalFormat("#.#######");
-
-
-
 
 
     @Override
@@ -43,18 +42,43 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         findAllViews();
         setUpMap();
+        setUpTranscript();
+
         setUpLetterGradeSpinner();
+        setUpClassNameDefault();
         setUpUnitsSpinner();
         setUpAddClassButton();
         setUpResetButton();
-        setUpTranscript();
+        setUpNewTermButton();
 
     }
 
+    private void setUpClassNameDefault() {
+        etClassName.setText("Class " + Integer.toString(transcriptData.getCurrClassCount()));
+    }
+
+    private void setUpNewTermButton() {
+        btNewTerm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                transcriptData.setNewTerm("TermName " + Integer.toString(count));
+                count++;
+                setUpClassNameDefault();
+            }
+        });
+    }
+
     private void setUpTranscript() {
-        transcriptData = new TranscriptData("TermName" + Integer.toString(count));
+
+        transcriptData = new TranscriptData("TermName " + Integer.toString(count));
         count++;
 
+        btViewTranscript.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
     }
 
@@ -62,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
         btReset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                count = 1;
+                setUpTranscript();
+                setUpClassNameDefault();
                 currGpa = 0.0;
                 totalUnitCount = 0.0;
                 totalGradePoints = 0.0;
@@ -90,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 currGpa = totalGradePoints/totalUnitCount;
                 transcriptData.addClassToCurrentTerm(classname, unitCount, letterGrade, currGpa);
                 btCalculateGPA.setText("Current Gpa: " + df.format(currGpa));
+                setUpClassNameDefault();
             }
         });
     }
@@ -118,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         btCalculateGPA = findViewById(R.id.btCalculateGPA);
         btReset = findViewById(R.id.btReset);
         btNewTerm = findViewById(R.id.btNewTerm);
+        btViewTranscript = findViewById(R.id.btViewTranscript);
+
         etClassName = findViewById(R.id.etClassName);
 
 

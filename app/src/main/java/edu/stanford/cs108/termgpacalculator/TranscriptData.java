@@ -34,4 +34,8 @@ public class TranscriptData {
         transcriptGradesData.put(pTermName, currTerm);
     }
 
+
+    public int getCurrClassCount(){
+        return currTerm.getClasscount();
+    }
 }

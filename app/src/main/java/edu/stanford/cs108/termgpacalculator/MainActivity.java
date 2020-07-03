@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
-import android.widget.Spinner;
 
-import java.lang.reflect.Array;
-import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +15,10 @@ public class MainActivity extends AppCompatActivity {
     NumberPicker npUnits;
     String letterGradeArray[];
     String unitsArray[];
-    Button btAddClass;
+    Button btCalculateGPA;
+    Button btReset;
+    Button btNewTerm;
+
     Map<String, Double> gpaMap;
     Double currGpa = 0.0;
     Double totalUnitCount = 0.0;
@@ -36,7 +36,21 @@ public class MainActivity extends AppCompatActivity {
         setUpLetterGradeSpinner();
         setUpUnitsSpinner();
         setUpAddClassButton();
+        setUpResetButton();
 
+    }
+
+    private void setUpResetButton() {
+        btReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                currGpa = 0.0;
+                totalUnitCount = 0.0;
+                totalGradePoints = 0.0;
+
+                btCalculateGPA.setText("Current Gpa " + Double.toString(currGpa));
+            }
+        });
     }
 
     private void setUpMap() {
@@ -44,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpAddClassButton() {
-        btAddClass.setOnClickListener(new View.OnClickListener() {
+        btCalculateGPA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 double gradePoint = gpaMap.get(letterGradeArray[npLetterGrade.getValue()]);
@@ -55,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
                 currGpa = totalGradePoints/totalUnitCount;
 
-                btAddClass.setText("Current Gpa " + Double.toString(currGpa));
+                btCalculateGPA.setText("Current Gpa " + Double.toString(currGpa));
             }
         });
     }
@@ -81,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
     private void findAllViews() {
         npLetterGrade = findViewById(R.id.npLetterGrade);
         npUnits = findViewById(R.id.npNumUnits);
-        btAddClass = findViewById(R.id.btAddClass);
+        btCalculateGPA = findViewById(R.id.btCalculateGPA);
+        btReset = findViewById(R.id.btReset);
+        btNewTerm = findViewById(R.id.btNewTerm);
 
 
     }

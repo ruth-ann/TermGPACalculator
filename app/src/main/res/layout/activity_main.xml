@@ -7,6 +7,48 @@
     tools:context=".MainActivity">
 
 
+
+    <LinearLayout
+        android:id="@+id/llOptButtons"
+        android:orientation="horizontal"
+        android:layout_width="386dp"
+        android:layout_height="92dp"
+        app:layout_constraintBottom_toTopOf="@+id/etClassName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <Button
+            android:id="@+id/btReset"
+            android:text="RESET"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:inputType="numberDecimal"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/btNewTerm"
+            android:text="NEW TERM"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:textSize="20sp" />
+
+
+        <Button
+            android:id="@+id/btViewTranscript"
+            android:text="VIEW TRANSCRIPT"
+            android:layout_width="0dp"
+            android:layout_height="92dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:textSize="20sp" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/etClassName"
         android:layout_width="386dp"
@@ -15,13 +57,13 @@
         app:layout_constraintBottom_toTopOf="@+id/npLetterGrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/llOptButtons"/>
 
     <NumberPicker
         android:id="@+id/npNumUnits"
         android:layout_width="386dp"
         android:layout_height="92dp"
-        app:layout_constraintBottom_toTopOf="@+id/btAddClass"
+        app:layout_constraintBottom_toTopOf="@+id/btCalculateGPA"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/npLetterGrade" />
@@ -36,10 +78,10 @@
         app:layout_constraintTop_toBottomOf="@+id/etClassName" />
 
     <Button
-        android:id="@+id/btAddClass"
+        android:id="@+id/btCalculateGPA"
         android:layout_width="380dp"
         android:layout_height="95dp"
-        android:text="Add Class"
+        android:text="Calculate GPA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

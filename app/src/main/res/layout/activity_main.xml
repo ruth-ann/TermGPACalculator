@@ -21,32 +21,29 @@
 
         <Button
             android:id="@+id/btReset"
-            android:text="RESET"
             android:layout_width="0dp"
             android:layout_height="92dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:inputType="numberDecimal"
-            android:textSize="20sp" />
+            android:text="RESET" />
 
         <Button
             android:id="@+id/btNewTerm"
-            android:text="NEW TERM"
             android:layout_width="0dp"
             android:layout_height="92dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:textSize="20sp" />
+            android:text="NEW TERM" />
 
 
         <Button
             android:id="@+id/btViewTranscript"
-            android:text="VIEW TRANSCRIPT"
             android:layout_width="0dp"
             android:layout_height="92dp"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:textSize="20sp" />
+            android:text="TRANSCRIPT" />
     </LinearLayout>
 
     <EditText

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.NumberPicker;
 
 import java.text.DecimalFormat;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    EditText etClassName;
     NumberPicker npLetterGrade;
     NumberPicker npUnits;
     String letterGradeArray[];
@@ -24,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
     Double currGpa = 0.0;
     Double totalUnitCount = 0.0;
     Double totalGradePoints = 0.0;
+
+    Integer count = 0;
+
+    TranscriptData transcriptData;
 
     DecimalFormat df = new DecimalFormat("#.#######");
 
@@ -41,6 +47,14 @@ public class MainActivity extends AppCompatActivity {
         setUpUnitsSpinner();
         setUpAddClassButton();
         setUpResetButton();
+        setUpTranscript();
+
+    }
+
+    private void setUpTranscript() {
+        transcriptData = new TranscriptData("TermName" + Integer.toString(count));
+        count++;
+
 
     }
 
@@ -65,14 +79,16 @@ public class MainActivity extends AppCompatActivity {
         btCalculateGPA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double gradePoint = gpaMap.get(letterGradeArray[npLetterGrade.getValue()]);
+                String classname = etClassName.getText().toString();
+                String letterGrade = letterGradeArray[npLetterGrade.getValue()];
+                double gradePoint = gpaMap.get(letterGrade);
                 double unitCount = new Double(unitsArray[npUnits.getValue()]);
 
                 totalUnitCount += unitCount;
                 totalGradePoints += gradePoint * unitCount;
 
                 currGpa = totalGradePoints/totalUnitCount;
-
+                transcriptData.addClassToCurrentTerm(classname, unitCount, letterGrade, currGpa);
                 btCalculateGPA.setText("Current Gpa: " + df.format(currGpa));
             }
         });
@@ -102,6 +118,8 @@ public class MainActivity extends AppCompatActivity {
         btCalculateGPA = findViewById(R.id.btCalculateGPA);
         btReset = findViewById(R.id.btReset);
         btNewTerm = findViewById(R.id.btNewTerm);
+        etClassName = findViewById(R.id.etClassName);
+
 
 
     }

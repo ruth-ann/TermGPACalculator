@@ -7,29 +7,27 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TermData {
-    private class GradesPerClass extends HashMap<String, Pair<Double, String>> {
-
-    }
-
-
-    private Map<String, Pair<Double, String>> termGradesData= new GradesPerClass();
-    
+    private String termName;
+    private Map<String, Pair<Double, String>> termGradesData= new HashMap<String, Pair<Double, String>>();
     private Double termGPA = 0.0;
+    Double termUnitCount = 0.0;
+    Double termGradePoints = 0.0;
+
+    public TermData(String pTermName) {
+        termName = pTermName;
+    }
 
     public Map<String, Pair<Double, String>> getTermGradesData() {
         return termGradesData;
     }
-    public void putClass(String classname, Double units, String grade){
+    public void putClass(String classname, Double units, String grade, Double gradePoints){
         termGradesData.put(classname, new Pair(units, grade));
+        termUnitCount += units;
+        termGradePoints += gradePoints;
+        termGPA = termGradePoints/termUnitCount;
     }
 
     public Double getTermGPA() {
         return termGPA;
     }
-
-    public void setTermGPA(Double termGPA) {
-        this.termGPA = termGPA;
-    }
-
-
 }

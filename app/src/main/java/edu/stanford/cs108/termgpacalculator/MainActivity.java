@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
+import java.text.DecimalFormat;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     Double currGpa = 0.0;
     Double totalUnitCount = 0.0;
     Double totalGradePoints = 0.0;
+
+    DecimalFormat df = new DecimalFormat("#.#######");
+
 
 
 
@@ -48,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 totalUnitCount = 0.0;
                 totalGradePoints = 0.0;
 
-                btCalculateGPA.setText("Current Gpa " + Double.toString(currGpa));
+                btCalculateGPA.setText("Current Gpa: " + df.format(currGpa));
             }
         });
     }
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
                 currGpa = totalGradePoints/totalUnitCount;
 
-                btCalculateGPA.setText("Current Gpa " + Double.toString(currGpa));
+                btCalculateGPA.setText("Current Gpa: " + df.format(currGpa));
             }
         });
     }
